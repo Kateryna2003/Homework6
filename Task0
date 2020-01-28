@@ -1,0 +1,189 @@
+package com.company;
+import java.util.Arrays;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Books books = new Books();
+        books.printBooks();
+        System.out.println("---------------");
+        books.addBooks();
+        Books underyear = new Books();
+        underyear.setBooks(books.searchyear(2005));
+        underyear.printBooks();
+
+    }
+}
+
+
+
+package com.company;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Books {
+    private int id;
+    private String name;
+    private String author;
+    private String pubhouse;
+    private int yearmade;
+    private int numpages;
+    private int price;
+
+    Book[] books = new Book[]{
+            new Book(1, "Romeo and Juliet", "Shekespeare", "Ruta", 2005, 365, 50),
+            new Book(2, "Red and Black", "Stendal", "Veselka", 2012, 500, 150),
+            new Book(3, "No name slave", "A.Zikov", "Grade fun", 1998, 120, 300),
+            new Book(4, "Adamant", "N.Perumov", "Funny Storys", 2019, 50, 850),
+            new Book(5, "Night watch", "S.Lukiyanenko", "Ruta", 2006, 120, 250),
+            new Book(6, "Labirint", "S.Lukiyanenko", "Funny Storys", 2006, 120, 250),
+
+
+    };
+
+    public void printBooks() {
+        for (Book elem : books) {
+            elem.viewBook();
+        }
+    }
+
+    private Book b;
+
+    public void addBooks() {
+
+        System.out.println(" Input id");
+        Scanner sc = new Scanner(System.in);
+        int id = Integer.valueOf(sc.nextLine());
+        System.out.println(" Input name");
+        Scanner sc1 = new Scanner(System.in);
+        String name = sc.nextLine();
+        System.out.println(" Input author");
+        Scanner sc2 = new Scanner(System.in);
+        String author = sc.nextLine();
+        System.out.println(" Input Publish house");
+        Scanner sc3 = new Scanner(System.in);
+        String pubhouse = sc.nextLine();
+        System.out.println(" Input Year made");
+        Scanner sc4 = new Scanner(System.in);
+        int yearmade = Integer.valueOf(sc.nextLine());
+        System.out.println(" Input Pages");
+        Scanner sc5 = new Scanner(System.in);
+        int numpages = Integer.valueOf(sc.nextLine());
+        System.out.println(" Input Prise");
+        Scanner sc6 = new Scanner(System.in);
+        int price = Integer.valueOf(sc.nextLine());
+        b = new Book(id, name, author, pubhouse, yearmade, numpages, price);
+
+
+    }
+
+    public Book[] searchyear(int yearmade) {
+        Book[] bookyear = new Book[books.length];
+        int count = 0;
+        for (Book elem : books) {
+            if (elem.getYearmade() > yearmade) {
+                bookyear[count] = elem;
+                count++;
+            }
+        }
+        return Arrays.copyOf(bookyear, count);
+    }
+
+    public Book[] getBooks() {
+        return books;
+    }
+
+    public void setBooks(Book[] Books) {
+        this.books = Books;
+    }
+}
+
+package com.company;
+
+    public class Book {
+        private int id;
+        private String name;
+        private String author;
+        private String pubhouse;
+        private int yearmade;
+        private int numpages;
+        private int price;
+
+        public Book(int id, String name, String author, String pubhouse, int yearmade, int numpages, int price) {
+            this.id = id;
+            this.name = name;
+            this.author = author;
+            this.pubhouse = pubhouse;
+            this.yearmade = yearmade;
+            this.numpages = numpages;
+            this.price = price;
+
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getAuthor() {
+            return author;
+        }
+
+        public String getPubhouse() {
+            return pubhouse;
+        }
+
+        public int getYearmade() {
+            return yearmade;
+        }
+
+        public int getNumpages() {
+            return numpages;
+        }
+
+        public int getPrice() {
+            return price;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public void setAuthor(String author) {
+            this.author = author;
+        }
+
+        public void setPubhouse(String pubhouse) {
+            this.pubhouse = pubhouse;
+        }
+
+        public void setYearmade(int yearmade) {
+            this.yearmade = yearmade;
+        }
+
+        public void setNumpages(int numpages) {
+            this.numpages = numpages;
+        }
+
+        public void setPrice(int price) {
+            this.price = price;
+        }
+
+        public void viewBook(){
+            System.out.println("ID=" + id
+                    + ", Name=" + name
+                    + ", Author=" + author
+                    + ", Publish House=" + pubhouse
+                    + ", Years made=" + yearmade
+                    + ", Numpages=" + numpages
+                    + ", Price=" + price);
+        }
+    }
+
